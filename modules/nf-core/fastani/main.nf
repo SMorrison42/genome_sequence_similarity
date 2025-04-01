@@ -21,8 +21,8 @@ process FASTANI {
 
         """
         fastANI \\
-            -ql $fastani_prepfile \\
-            -rl $fastani_prepfile \\
+            --ql $fastani_prepfile \\
+            --rl $fastani_prepfile \\
             -o ani.txt
 
         cat <<-END_VERSIONS > versions.yml
