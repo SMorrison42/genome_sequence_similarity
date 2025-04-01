@@ -16,7 +16,7 @@
                     "type": "string",
                     "format": "file-path",
                     "exists": true,
-                    "schema": "assets/schema_input.json",
+                    "schema": "assets/schema_input_fasta.json",
                     "mimetype": "text/csv",
                     "pattern": "^\\S+\\.csv$",
                     "description": "Path to comma-separated file containing information about the samples in the experiment.",
