@@ -77,9 +77,9 @@ workflow SEQUENCESIMILARITY {
         ch_multiqc_logo.toList()
     )
 
-    REFERENCE_ALLELES("${params.fasta}")
+    REFERENCE_ALLELES("${params.reference_fastas}")
     ch_ref_alleles = REFERENCE_ALLELES.out.reference_alleles
-    ALLELES_REFORMAT("${params.fasta}")
+    ALLELES_REFORMAT("${params.reference_fastas}")
     //ch_etoki_alleles = Channel.empty()
     ch_etoki_prep_f1 = Channel.empty()
     ch_etoki_prep_f2 = Channel.empty()
