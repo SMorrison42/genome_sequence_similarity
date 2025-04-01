@@ -13,7 +13,7 @@ process ETOKI_MLST {
     input:
     tuple val(meta), path(contigs)
     path(reference_alleles)
-    path(etoki_md5sum)
+    path(etoki_csv)
 
     output:
     tuple val(meta), path('*.etoki.fasta')    , emit: etoki_alleles_fasta
@@ -25,8 +25,6 @@ process ETOKI_MLST {
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
-    def is_compressed = contigs.getExtension() == "gz" ? true : false
-    def fasta_name = is_compressed ? contigs.getBaseName() : scaffolds
 
     """
     if [ "${is_compressed}" == "true" ]; then
@@ -34,10 +32,10 @@ process ETOKI_MLST {
     fi
     #singularity exec ${projectDir}/bin/etoki_latest.sif 
         EToKi.py MLSType \\
-        -i ${fasta_name} \\
+        -i ${contigs} \\
         -r $reference_alleles \\
-        -k ${prefix} \\
-        -d $etoki_md5sum \\
+        -k Cparvum \\
+        -d $etoki_csv \\
         -o ${prefix}.etoki.fasta \\
         $args \\
     &> etoki_mlst_main.log
