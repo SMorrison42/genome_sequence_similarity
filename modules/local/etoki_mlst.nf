@@ -27,9 +27,6 @@ process ETOKI_MLST {
     def prefix = task.ext.prefix ?: "${meta.id}"
 
     """
-    if [ "${is_compressed}" == "true" ]; then
-        gzip -c -d ${contigs} > ${fasta_name}
-    fi
     #singularity exec ${projectDir}/bin/etoki_latest.sif 
         EToKi.py MLSType \\
         -i ${contigs} \\
