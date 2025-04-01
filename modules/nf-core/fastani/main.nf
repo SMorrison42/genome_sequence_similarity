@@ -19,7 +19,6 @@ process FASTANI {
     script:
     def args = task.ext.args ?: ''
 
-    if (meta.batch_input) {
         """
         fastANI \\
             -ql $fastani_prepfile \\
@@ -31,5 +30,4 @@ process FASTANI {
             fastani: \$(fastANI --version 2>&1 | sed 's/version//;')
         END_VERSIONS
         """
-}
 }
