@@ -12,8 +12,9 @@
      workflows use the "tube map" design for that. See https://nf-co.re/docs/contributing/design_guidelines#examples for examples.   -->
 <!-- TODO nf-core: Fill in short bullet-pointed list of the default steps in the pipeline -->
 
-1. Read QC ([`FastQC`](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/))
-2. Present QC for raw reads ([`MultiQC`](http://multiqc.info/))
+1. Whole genome average nucleotide identity ([`fastANI`](https://github.com/ParBLiSS/FastANI))
+2. Whole Genome MLST analysis ([`EToKi`](https://github.com/zheminzhou/EToKi))
+3. Present QC for genomes and results ([`MultiQC`](http://multiqc.info/))
 
 ## Usage
 
@@ -41,9 +42,11 @@ Now, you can run the pipeline using:
 <!-- TODO nf-core: update the following command to include all required parameters for a minimal example -->
 
 ```bash
-nextflow run sequencesim/sequencesimilarity \
-   -profile <docker/singularity/.../institute> \
-   --input samplesheet.csv \
+nextflow run main.nf \
+   -profile <conda/singularity/.../institute> \
+   --input fasta_samplesheet.csv \
+   --reference_fastas <allele_database in fasta format>
+   --platform illumina
    --outdir <OUTDIR>
 ```
 
